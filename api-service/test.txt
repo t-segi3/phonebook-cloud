@@ -3,7 +3,7 @@ untuk melihat daftar phonebook
 
 untuk membuat record di phonebook
   curl -X POST http://localhost:32000/phones  \
-  -d '{"name": "Afiq", "address" : "Uruguay", "phone": "781723"}' \
+  -d '{"nama": "Afiq", "alamat" : "Uruguay", "notelp": "781723"}' \
   -H "Content-Type: application/json"
 
 untuk mendapatkan detail record dengan berbasis id
@@ -13,6 +13,6 @@ untuk menghapus record dengan berbasis id
  curl -X DELETE http://localhost:32000/phones/eea73819-63bf-11ec-ac4c-9828a6479781
 
 untuk mengupdate record dengan berbasis id
-  curl -X PUT http://localhost:32000/phones/bca9b23c-63db-11ec-aac6-c4b301cd56b3 \
+  curl -X PUT http://localhost:32000/phones/1a0ddf3c-63de-11ec-9ddf-c4b301cd56b3 \
   -H 'Content-type: application/json' \
-  -d '{"name": "Afiq Fawwaz"}'
+  -d '{"nama": "Afiq Fawwaz"}'

@@ -59,7 +59,7 @@ class PhoneBook:
     def create(self, data):
         id = str(uuid.uuid1())
         try:
-            query = "INSERT INTO phonebook (id, name, address, phone) VALUES('{0}', '{1}', '{2}', '{3}')".format(id, data['name'],data['address'],data['phone'])
+            query = "INSERT INTO phonebook (id, nama, alamat, notelp) VALUES('{0}', '{1}', '{2}', '{3}')".format(id, data['nama'],data['alamat'],data['notelp'])
             self.execute_query(query)
             return dict(status='OK',id=id)
         except:
@@ -116,14 +116,14 @@ if __name__=='__main__':
 #    print(result)
 #    ------------ list
     data = {}
-    data['name'] = 'edit'
-    data['address'] = 'jakarta'
-    data['phone'] = '12345'
+    data['nama'] = 'edit'
+    data['alamat'] = 'jakarta'
+    data['notelp'] = '12345'
     # pd.create(data)
     # pd.delete('2')
     # pd.update('2', data)
     # print(pd.list())
     # print(pd.read('2'))
-    print(pd.measure())
+    # print(pd.measure())
 #    ------------ info
 #    print(pd.read('c516b780-2fa2-11eb-bf35-7fc0bd24c845'))
