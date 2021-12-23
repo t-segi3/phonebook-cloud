@@ -6,7 +6,8 @@
   <meta charset="utf-8">
  </head>
  <body>
-   <script type="text/javascript" charset="utf-8">
+   <script type="text/javascript" charset="utf-8" crossorigin="anonymous">
+
      /* app code */
      /*URL PATH ke service kita */
     var URLPATH='http://localhost:32000/phones'
@@ -31,19 +32,30 @@
               console.log(d)
               var new_data = []
               for (key in d) {
+             
                   rec = d[key]
                   rec['nama']='kosong'
                   rec['alamat']='kosong'
                   rec['notelp']='kosong'
+                  rec['id']=d[key][0]
 
-                  if (d[key]['data']['nama'])
-                    rec['nama']=d[key]['data']['nama']
-                  if (d[key]['data']['alamat'])
-                    rec['alamat']=d[key]['data']['alamat']
-                  if (d[key]['data']['notelp'])
-                    rec['notelp']=d[key]['data']['notelp']
+                  if (d[key][1])
+                    rec['nama']=d[key][1]
+                  if (d[key][2])
+                    rec['alamat']=d[key][2]
+                  if (d[key][3])
+                    rec['notelp']=d[key][3]
                   delete rec['data']
                   new_data.push(rec)
+
+                //   if (d[key]['data']['nama'])
+                //     rec['nama']=d[key]['data']['nama']
+                //   if (d[key]['data']['alamat'])
+                //     rec['alamat']=d[key]['data']['alamat']
+                //   if (d[key]['data']['notelp'])
+                //     rec['notelp']=d[key]['data']['notelp']
+                //   delete rec['data']
+                //   new_data.push(rec)
               }
               return new_data
           })
@@ -62,7 +74,8 @@
                           $$('tabelcoba').loadNext(-1,0)
                           return false;
                       }
-                      data = hasil.data;
+                    //   data = hasil.data;
+                      data = hasil
                       items = $$('tabelcoba').getItem(id)
                       items.id = data.id;
                       webix.alert('data '+items.id+' berhasil ditambah')
@@ -83,9 +96,21 @@
 
           if (operation=='update'){
               console.log(updatedata)
+
+              for (key in updatedata) {
+                  if (updatedata[key] == 'kosong') {
+                      delete updatedata[key]
+                  }
+              }
+              id = updatedata[0]
+              delete updatedata['id']
+              delete updatedata[0]
+
+              console.log(updatedata)
+
               return webix.ajax()
                  .headers({"Content-type":"application/json"})
-                 .put(URLPATH+'/'+updatedata.id,JSON.stringify(updatedata))
+                 .put(URLPATH+'/'+id,JSON.stringify(updatedata))
                  .then(function(data){
                      hasil = data.json()
                      console.log(hasil)
@@ -119,7 +144,7 @@
 
      webix.ui({
          rows:[
-             {view: 'template', type:'header', template: 'Coba PhonebookDB API'},
+             {view: 'template', type:'header', template: 'PhonebookDB API'},
              buttons,
              grid
          ]
