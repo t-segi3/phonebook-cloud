@@ -12,7 +12,7 @@ untuk mendapatkan detail record dengan berbasis id
 untuk menghapus record dengan berbasis id
  curl -X DELETE http://localhost:32000/phones/eea73819-63bf-11ec-ac4c-9828a6479781
 
-unutk mengupdate record dengan berbasis id
-  curl -X PUT http://localhost:32000/phones/eea73819-63bf-11ec-ac4c-9828a6479781 \
+untuk mengupdate record dengan berbasis id
+  curl -X PUT http://localhost:32000/phones/bca9b23c-63db-11ec-aac6-c4b301cd56b3 \
   -H 'Content-type: application/json' \
   -d '{"name": "Afiq Fawwaz"}'

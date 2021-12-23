@@ -10,7 +10,7 @@ class PhoneBook:
             connection = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
-                passwd="",
+                passwd="root",
                 database="phonebookservice"
             )
             print("Connection to MySQL DB successful")
