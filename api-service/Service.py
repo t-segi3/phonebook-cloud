@@ -1,5 +1,6 @@
 from flask import Flask,current_app, jsonify, make_response, Response,  Blueprint, abort,render_template, request, redirect,render_template_string, url_for, send_from_directory
 from flask_restful import Api, Resource, reqparse,wraps
+from flask_cors import CORS, cross_origin
 import uuid
 import json
 from PhonebookModel import *
@@ -43,6 +44,7 @@ class PhoneBookAPI(Resource):
         except:
             info = dict()
         s = self.phonebook.update(id,info)
+        print("X0 > ", info)
         return jsonify(s)
 
     def delete(self,id):
@@ -66,5 +68,6 @@ def get_blueprint(nama):
     return app
 
 app = get_blueprint(__name__)
+cors = CORS(app)
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=32000, debug=True)
